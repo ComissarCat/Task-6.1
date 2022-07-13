@@ -1,6 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdio.h>
+#include <algorithm>
 using namespace std;
 
 int pow(int basis, int degree);
@@ -9,14 +10,87 @@ void perfect_from_range(int start, int end);
 void draw_cart(const char* value, const char* suit);
 void enter_cart();
 void lucky_number(int number);
+void task_1();
+void task_2();
+void task_3();
+void task_4();
+void task_5();
+void menu();
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");    
-    
-    lucky_number(123321);
+    setlocale(LC_ALL, "Russian");   
 
+    menu();
+    
     return 0;
+}
+
+void menu()
+{
+    int task = 0;
+    void(*list_of_menu[5])() = {task_1, task_2, task_3, task_4, task_5};
+    do
+    {
+        do
+        {
+            cout << "\n\nВведите номер задачи, 0 - выход: ";
+            (cin >> task).get();
+        } while (task < 0 or task > 5);
+        if (task)list_of_menu[task - 1]();
+    } while (task);
+}
+
+void task_1()
+{
+    int basis = 0, degree = 0;
+    cout << "Введите основание степени: ";
+    cin >> basis;
+    do
+    {
+        cout << "Введите показатель степени: ";
+        cin >> degree;
+    } while (degree < 1);
+    cout << "Результат: " << pow(basis, degree);
+}
+
+void task_2()
+{
+    int start = 0, end = 0;
+    cout << "Введите начало диапазона: ";
+    cin >> start;
+    cout << "Введите конец диапазона: ";
+    cin >> end;
+    if (start > end) swap(start, end);
+    cout << "Сумма всех чисел в диапазоне равна " << sum_from_range(start, end);
+}
+
+void task_3()
+{
+    int start = 0, end = 0;
+    cout << "Введите начало диапазона: ";
+    cin >> start;
+    cout << "Введите конец диапазона: ";
+    cin >> end;
+    if (start > end) swap(start, end);
+    cout << "Список совершенных чисел в диапазоне: ";
+    perfect_from_range(start, end);
+}
+
+void task_4()
+{
+    enter_cart();
+}
+
+void task_5()
+{
+    int number = 0;
+    do
+    {
+        cout << "Введите шестизначное число: ";
+        cin >> number;
+    } while (number < 100000 or number > 999999);
+    lucky_number(number);
 }
 
 int pow(int basis, int degree)
