@@ -11,7 +11,7 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    cout << pow(2, 10);
+    cout << sum_from_range(1, 5);
 
     return 0;
 }
@@ -22,6 +22,16 @@ int pow(int basis, int degree)
     for (int i = 1; i < degree; i++)
     {
         result *= basis;
+    }
+    return result;
+}
+
+int sum_from_range(int start, int end)
+{
+    int result = 0;
+    for (int i = start; i <= end; i++)
+    {
+        result += i;
     }
     return result;
 }
