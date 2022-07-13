@@ -14,7 +14,7 @@ int main()
 {
     setlocale(LC_ALL, "Russian");    
     
-    enter_cart();
+    lucky_number(123321);
 
     return 0;
 }
@@ -96,4 +96,21 @@ void enter_cart()
     } while (not(strstr(suit, "spades")) and not(strstr(suit, "hearts")) and not(strstr(suit, "diamonds")) and not(strstr(suit, "crosses")));
 
     draw_cart(value, suit);
+}
+
+void lucky_number(int number)
+{
+    int first_half = 0, second_half = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        first_half += (number % 10);
+        number /= 10;
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        second_half += (number % 10);
+        number /= 10;
+    }
+    if (first_half == second_half) cout << "Число счастливое";
+    else cout << "Число не счастливое";
 }
